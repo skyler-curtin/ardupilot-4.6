@@ -10,7 +10,7 @@
 #endif
 
 #ifndef AP_CUSTOM_FIRMWARE_STRING
-#define AP_CUSTOM_FIRMWARE_STRING "Asy-Guardian-4.6.0-B4-SITL"
+#define AP_CUSTOM_FIRMWARE_STRING "Asylon Guardian - 4.6.0b4"
 #endif
 
 class ExpandingString;
