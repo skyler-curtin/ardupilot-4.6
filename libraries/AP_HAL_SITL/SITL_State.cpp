@@ -470,6 +470,7 @@ void SITL_State::init(int argc, char * const argv[])
 {
     _scheduler = Scheduler::from(hal.scheduler);
     _parse_command_line(argc, argv);
+
 }
 
 /*

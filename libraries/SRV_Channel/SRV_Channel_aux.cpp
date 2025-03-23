@@ -200,6 +200,7 @@ void SRV_Channel::aux_servo_function_setup(void)
         // fixed wing throttle
         set_range(100);
         break;
+    case k_battery_lock:
     default:
         break;
     }

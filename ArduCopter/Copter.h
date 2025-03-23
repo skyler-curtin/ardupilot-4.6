@@ -258,6 +258,10 @@ private:
     // helper function to get inertially interpolated rangefinder height.
     bool get_rangefinder_height_interpolated_cm(int32_t& ret) const;
 
+    // Battery Lock(servo 9) defs
+    void battery_lock_update_state(bool lock);
+    bool battery_locked; // Tracks battery lock state
+
 #if AP_RANGEFINDER_ENABLED
     class SurfaceTracking {
     public:

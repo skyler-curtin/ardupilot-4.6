@@ -662,6 +662,9 @@ void AP_Arming_Copter::set_pre_arm_check(bool b)
 
 bool AP_Arming_Copter::arm(const AP_Arming::Method method, const bool do_arming_checks)
 {
+    // Add battery lock command before arming is allowed
+    copter.battery_lock_update_state(true);
+    
     static bool in_arm_motors = false;
 
     // exit immediately if already in this function
@@ -814,7 +817,7 @@ bool AP_Arming_Copter::disarm(const AP_Arming::Method method, bool do_disarm_che
 
     // send disarm command to motors
     copter.motors->armed(false);
-
+    copter.battery_lock_update_state(false);
 #if MODE_AUTO_ENABLED
     // reset the mission
     copter.mode_auto.mission.reset();

@@ -866,6 +866,19 @@ bool Copter::get_rate_ef_targets(Vector3f& rate_ef_targets) const
     }
     return true;
 }
+// Battery lock set locked/unlocked command. If true sets servo to locked position.
+void Copter::battery_lock_update_state(bool lock)
+{
+    if (lock && !battery_locked) {
+        // Lock the battery lock servo, (1100 PWM)
+        SRV_Channels::set_output_pwm(SRV_Channel::k_battery_lock, 1100);
+        battery_locked = true;
+    } else if (!lock && battery_locked) {
+        // Unlock the battery lock servo, (1500 PWM used in lieu of 1900 to prevent batt lock from smashing motor 4 rc connection on kore pcb with DroneSentry)
+        SRV_Channels::set_output_pwm(SRV_Channel::k_battery_lock, 1500);
+        battery_locked = false;
+    }
+}
 
 /*
   constructor for main Copter class
@@ -882,7 +895,8 @@ Copter::Copter(void)
     land_accel_ef_filter(LAND_DETECTOR_ACCEL_LPF_CUTOFF),
     rc_throttle_control_in_filter(1.0f),
     inertial_nav(ahrs),
-    param_loader(var_info)
+    param_loader(var_info),
+    battery_locked(false)
 {
 }
 

@@ -184,6 +184,8 @@ void HAL_SITL::setup_signal_handlers() const
 
 }
 
+
+
 /*
   fill 8k of stack with NaN. This allows us to find uses of
   uninitialised memory without valgrind

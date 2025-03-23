@@ -9,6 +9,10 @@
 #define ENABLE_HEAP 0
 #endif
 
+#ifndef AP_CUSTOM_FIRMWARE_STRING
+#define AP_CUSTOM_FIRMWARE_STRING "Asy-Guardian-4.6.0-B4-SITL"
+#endif
+
 class ExpandingString;
 
 class AP_HAL::Util {
